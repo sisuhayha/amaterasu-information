@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFA — Great Finnish Administration</title>
+<meta name="description" content="Finnish-rooted streetwear for those who move with intention. Relaxed fits, clean silhouettes, honest fabrics — built to last. Based in Helsinki, shipping worldwide.">
+<meta property="og:title" content="GFA — Great Finnish Administration">
+<meta property="og:description" content="Finnish-rooted streetwear for those who move with intention. Relaxed fits, clean silhouettes, honest fabrics — built to last.">
+<meta property="og:image" content="/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GFA — Great Finnish Administration">
+<meta name="twitter:description" content="Finnish-rooted streetwear for those who move with intention.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:       #1a3a5c;
+    --blue-mid:   #2d5986;
+    --blue-light: #4a7fb5;
+    --sky:        #d6e8f7;
+    --sky-pale:   #eef5fc;
+    --white:      #ffffff;
+    --off:        #f4f7fb;
+    --ink:        #0f1f30;
+    --muted:      #7a92a8;
+    --border:     #dce8f2;
+    --shadow:     rgba(26,58,92,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  /* ─── ACCESSIBILITY UTILITIES ─── */
+  .visually-hidden {
+    position: absolute !important; height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px); white-space: nowrap;
+  }
+
+  .skip-link {
+    position: absolute; top: -100%; left: 1rem;
+    background: var(--blue); color: var(--white);
+    padding: .6rem 1.2rem; border-radius: 0 0 8px 8px;
+    font-size: .8rem; font-weight: 500; z-index: 10000;
+    transition: top .2s;
+  }
+  .skip-link:focus { top: 0; }
+
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    html { scroll-behavior: auto; }
+    .cursor, .cursor-ring { display: none !important; }
+  }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── CURSOR ─── */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--blue);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width .3s, height .3s, opacity .3s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--blue-light);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all .15s ease;
+    opacity: 0.5;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--blue);
+    overflow: hidden;
+    padding: .55rem 0;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    animation: tickerMove 30s linear infinite;
+  }
+  .ticker-inner span {
+    font-size: .68rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(214,232,247,.7);
+    margin: 0 2.5rem;
+  }
+  .ticker-inner .sep { color: var(--blue-light); opacity: 1; margin: 0 .8rem; }
+  @keyframes tickerMove { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .4s;
+  }
+  nav.shadow { box-shadow: 0 6px 32px var(--shadow); }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: .73rem; font-weight: 400; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
+    position: relative; transition: color .25s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0; width: 100%; height: 1.5px;
+    background: var(--blue);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-logo {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    text-align: center; line-height: 1;
+  }
+  .nav-logo .w { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 200; letter-spacing: .32em; color: var(--ink); }
+  .nav-logo .s { display: block; font-size: .45rem; letter-spacing: .38em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+
+  .nav-right { display: flex; gap: 1.6rem; align-items: center; }
+  .nav-right a { font-size: .72rem; color: var(--muted); transition: color .25s; }
+  .nav-right a:hover { color: var(--ink); }
+  .nav-cart {
+    background: var(--blue); color: var(--white) !important;
+    padding: .5rem 1.4rem; border-radius: 100px;
+    font-size: .72rem !important; font-weight: 500;
+    transition: background .3s, transform .2s !important;
+  }
+  .nav-cart:hover { background: var(--blue-mid) !important; transform: translateY(-1px); }
+
+  /* ─── BUTTONS ─── */
+  .btn-fill {
+    display: inline-block;
+    background: var(--blue); color: var(--white);
+    padding: .9rem 2.4rem; border-radius: 100px;
+    font-size: .75rem; font-weight: 500; letter-spacing: .08em;
+    border: 1.5px solid var(--blue);
+    transition: all .3s;
+  }
+  .btn-fill:hover { background: var(--blue-mid); border-color: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,58,92,.22); }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent; color: var(--blue);
+    padding: .9rem 2.4rem; border-radius: 100px;
+    font-size: .75rem; font-weight: 400; letter-spacing: .08em;
+    border: 1.5px solid var(--border);
+    transition: all .3s;
+  }
+  .btn-ghost:hover { border-color: var(--blue); background: var(--sky-pale); transform: translateY(-2px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 68px - 32px);
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 3rem;
+    background: var(--off);
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: 'GFA';
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Fraunces', serif; font-size: 18rem; font-weight: 200;
+    color: rgba(26,58,92,.04); line-height: 1; pointer-events: none;
+    animation: bgTextFloat 8s ease-in-out infinite;
+  }
+  @keyframes bgTextFloat {
+    0%,100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-52%) translateX(-10px); }
+  }
+
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--sky); color: var(--blue-mid);
+    font-size: .65rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+    padding: .42rem 1rem; border-radius: 100px; width: fit-content;
+    margin-bottom: 2rem;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-pill .blink {
+    width: 7px; height: 7px; background: var(--blue-light); border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 200; line-height: 1.06; color: var(--ink);
+    margin-bottom: 1.5rem;
+    animation: fadeUp .8s .12s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--blue-mid); }
+
+  .hero-desc {
+    font-size: .9rem; color: var(--muted); line-height: 1.9;
+    max-width: 380px; margin-bottom: 2.5rem; font-weight: 300;
+    animation: fadeUp .8s .22s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .8s .32s ease both;
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--sky-pale);
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform 9s ease;
+    animation: fadeIn 1.2s .1s ease both;
+  }
+  .hero-right:hover img { transform: scale(1.04); }
+
+  .hero-badge {
+    position: absolute; bottom: 2.5rem; left: 2.5rem;
+    background: rgba(255,255,255,.94); backdrop-filter: blur(14px);
+    border-radius: 18px; padding: 1.2rem 1.6rem;
+    box-shadow: 0 10px 40px var(--shadow);
+    animation: slideUp .9s .6s ease both;
+  }
+  .hero-badge .b-tag { font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .hero-badge .b-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 200; color: var(--ink); margin: .25rem 0 .1rem; }
+  .hero-badge .b-price { font-size: .85rem; font-weight: 600; color: var(--blue); }
+
+  /* ─── STATS ─── */
+  .stats-bar {
+    background: var(--blue);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 2rem; text-align: center;
+    border-right: 1px solid rgba(255,255,255,.08);
+    transition: background .3s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(255,255,255,.05); }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 200;
+    color: var(--white); display: block; margin-bottom: .2rem;
+    transition: transform .3s;
+  }
+  .stat-item:hover .stat-num { transform: scale(1.08); }
+  .stat-lbl { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sky); opacity: .55; }
+
+  /* ─── MARQUEE ─── */
+  .marquee-section {
+    overflow: hidden; padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+  .marquee-track {
+    display: inline-flex; gap: 0;
+    animation: marqueeSlide 20s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 200;
+    font-style: italic; color: var(--sky); letter-spacing: .04em;
+    margin: 0 2rem; white-space: nowrap;
+  }
+  .marquee-track .dot-sep { color: var(--blue-light); font-style: normal; font-size: 1rem; }
+  @keyframes marqueeSlide { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ─── SECTION UTIL ─── */
+  section { padding: 6rem 3rem; }
+
+  .s-lbl {
+    font-size: .63rem; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--blue-light); font-weight: 400; margin-bottom: .75rem;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 200; color: var(--ink); line-height: 1.12;
+  }
+  h2 em { font-style: italic; color: var(--blue-mid); }
+
+  /* ─── CATEGORY GRID ─── */
+  .cat-section { background: var(--off); }
+
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .cat-card {
+    position: relative; overflow: hidden; border-radius: 22px;
+    cursor: pointer; aspect-ratio: 3/4;
+    box-shadow: 0 4px 24px var(--shadow);
+    transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s;
+  }
+  .cat-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 56px rgba(26,58,92,.18); }
+
+  .cat-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform .8s ease;
+  }
+  .cat-card:hover img { transform: scale(1.08); }
+
+  .cat-card .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,22,40,.82) 0%, rgba(10,22,40,.1) 50%, transparent 100%);
+  }
+  .cat-card .c-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem;
+    transform: translateY(8px); transition: transform .4s ease;
+  }
+  .cat-card:hover .c-info { transform: translateY(0); }
+  .cat-card .c-tag { font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sky); opacity: .7; display: block; margin-bottom: .4rem; }
+  .cat-card .c-name { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 200; color: var(--white); display: block; }
+  .cat-card .c-link {
+    display: inline-flex; align-items: center; gap: .4rem;
+    margin-top: .9rem; font-size: .68rem; letter-spacing: .1em;
+    color: rgba(214,232,247,.8); font-weight: 400;
+    transition: gap .25s, color .25s;
+  }
+  .cat-card:hover .c-link { gap: .8rem; color: var(--sky); }
+
+  /* ─── PRODUCTS ─── */
+  .products-section { background: var(--white); }
+
+  .products-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .products-header .see-all {
+    font-size: .72rem; color: var(--blue-light); letter-spacing: .08em;
+    border-bottom: 1px solid var(--border); padding-bottom: 2px;
+    transition: border-color .25s, color .25s;
+  }
+  .products-header .see-all:hover { color: var(--blue); border-color: var(--blue); }
+
+  .products-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .p-card { cursor: pointer; }
+
+  .p-img {
+    position: relative; overflow: hidden; border-radius: 18px;
+    background: var(--off); aspect-ratio: 3/4;
+    box-shadow: 0 2px 16px var(--shadow);
+    transition: box-shadow .4s;
+  }
+  .p-card:hover .p-img { box-shadow: 0 16px 48px rgba(26,58,92,.16); }
+
+  .p-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform .7s ease;
+  }
+  .p-card:hover .p-img img { transform: scale(1.06); }
+
+  .p-img .badge {
+    position: absolute; top: 1rem; left: 1rem;
+    padding: .28rem .85rem; border-radius: 100px;
+    font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+  }
+  .badge-new { background: var(--blue); color: var(--white); }
+  .badge-hot { background: var(--sky); color: var(--blue); }
+
+  .p-img .quick-add {
+    position: absolute; bottom: .9rem; left: .9rem; right: .9rem;
+    background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+    border-radius: 12px; padding: .75rem; text-align: center;
+    font-size: .64rem; font-weight: 500; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--blue);
+    transform: translateY(14px); opacity: 0;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+    border: none; cursor: pointer; width: calc(100% - 1.8rem); font-family: 'Outfit', sans-serif;
+  }
+  .p-card:hover .quick-add { opacity: 1; transform: translateY(0); }
+
+  .p-info { padding: 1.1rem .2rem 0; }
+  .p-info .p-name { font-size: .86rem; font-weight: 400; color: var(--ink); margin-bottom: .2rem; }
+  .p-info .p-sub { font-size: .72rem; color: var(--muted); margin-bottom: .5rem; }
+  .p-info .p-price { font-size: .92rem; font-weight: 600; color: var(--blue); }
+  .p-info .p-old { font-size: .76rem; color: var(--muted); text-decoration: line-through; margin-left: .4rem; font-weight: 300; }
+
+  .sz-row { display: flex; gap: .35rem; margin-top: .65rem; }
+  .sz {
+    font-size: .55rem; letter-spacing: .05em; color: var(--muted);
+    border: 1px solid var(--border); padding: .22rem .55rem; border-radius: 7px;
+    cursor: pointer; transition: all .2s;
+  }
+  .sz:hover { border-color: var(--blue); color: var(--blue); background: var(--sky-pale); }
+  .sz.active { border-color: var(--blue); color: var(--blue); background: var(--sky-pale); font-weight: 500; }
+
+  /* ─── TICKER PAUSE ON HOVER ─── */
+  .ticker:hover .ticker-inner,
+  .ticker:focus-within .ticker-inner { animation-play-state: paused; }
+
+  /* ─── MARQUEE PAUSE ON HOVER ─── */
+  .marquee-section:hover .marquee-track,
+  .marquee-section:focus-within .marquee-track { animation-play-state: paused; }
+
+  /* ─── COAT FEATURE ─── */
+  .coat-feature {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 85vh; background: var(--sky-pale);
+  }
+
+  .coat-img {
+    position: relative; overflow: hidden;
+    background: #d8e8f0;
+  }
+  .coat-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform 8s ease;
+  }
+  .coat-feature:hover .coat-img img { transform: scale(1.04); }
+
+  .coat-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4.5rem;
+  }
+  .coat-content .s-lbl { margin-bottom: 1rem; }
+  .coat-content h2 { font-size: clamp(2.5rem, 5vw, 4.8rem); margin-bottom: 1.5rem; }
+  .coat-content p { font-size: .88rem; color: var(--muted); line-height: 1.95; max-width: 400px; margin-bottom: 2rem; }
+  .coat-price-display { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 200; color: var(--ink); margin-bottom: 1.5rem; }
+
+  .swatches { display: flex; align-items: center; gap: .7rem; margin-bottom: 2rem; }
+  .swatch-lbl { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-right: .4rem; }
+  .sw {
+    width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 2.5px transparent;
+    transition: box-shadow .25s, transform .25s;
+  }
+  .sw:hover, .sw.on { box-shadow: 0 0 0 2.5px var(--blue); transform: scale(1.15); }
+  .sw.sw-white  { background: #f5f2ed; border: 1.5px solid #ddd; }
+  .sw.sw-cream  { background: #e8ddd0; }
+  .sw.sw-navy   { background: #1a3a5c; }
+  .sw.sw-stone  { background: #b5a898; }
+
+  .coat-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ─── JEANS SECTION ─── */
+  .jeans-section { background: var(--white); }
+
+  .jeans-layout {
+    display: grid; grid-template-columns: 1.35fr 1fr;
+    gap: 2rem; margin-top: 3rem; align-items: start;
+  }
+
+  .jeans-big {
+    border-radius: 24px; overflow: hidden; position: relative;
+    aspect-ratio: 2/3;
+    box-shadow: 0 8px 40px var(--shadow);
+    background: var(--off);
+  }
+  .jeans-big img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform 8s ease;
+  }
+  .jeans-big:hover img { transform: scale(1.04); }
+
+  .jeans-badge {
+    position: absolute; bottom: 2rem; left: 2rem;
+    background: rgba(255,255,255,.95); backdrop-filter: blur(14px);
+    border-radius: 16px; padding: 1.1rem 1.5rem;
+    box-shadow: 0 6px 28px var(--shadow);
+  }
+  .jeans-badge .jb-tag { font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .jeans-badge .jb-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 200; color: var(--ink); margin: .2rem 0; }
+  .jeans-badge .jb-price { font-size: .82rem; font-weight: 600; color: var(--blue); }
+
+  .jeans-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .jeans-mini {
+    display: flex; border-radius: 18px; overflow: hidden;
+    background: var(--off);
+    box-shadow: 0 4px 20px var(--shadow);
+    cursor: pointer;
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .jeans-mini:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(26,58,92,.14); }
+
+  .jeans-mini img {
+    width: 130px; height: 160px;
+    object-fit: cover; object-position: center top;
+    display: block; flex-shrink: 0;
+    transition: transform .6s ease;
+  }
+  .jeans-mini:hover img { transform: scale(1.06); }
+
+  .jm-info { padding: 1.3rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .jm-tag { font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; }
+  .jm-name { font-size: .9rem; font-weight: 400; color: var(--ink); margin-bottom: .3rem; }
+  .jm-price { font-size: .88rem; font-weight: 600; color: var(--blue); margin-bottom: .7rem; }
+  .jm-link { font-size: .65rem; letter-spacing: .1em; color: var(--blue-light); display: inline-flex; align-items: center; gap: .3rem; transition: gap .25s; }
+  .jeans-mini:hover .jm-link { gap: .6rem; }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy-section { background: var(--blue); padding: 6rem 3rem; }
+  .philosophy-section .s-lbl { color: rgba(214,232,247,.5); margin-bottom: .75rem; }
+  .philosophy-section h2 { color: var(--white); }
+  .philosophy-section h2 em { color: var(--sky); }
+
+  .phil-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 2px; background: rgba(255,255,255,.07);
+    border-radius: 22px; overflow: hidden; margin-top: 4rem;
+  }
+  .phil-card {
+    background: rgba(255,255,255,.04); padding: 2.8rem 2rem;
+    transition: background .35s, transform .35s;
+    cursor: default;
+  }
+  .phil-card:hover { background: rgba(255,255,255,.09); transform: translateY(-3px); }
+  .phil-n { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 200; color: rgba(255,255,255,.09); line-height: 1; margin-bottom: 1.8rem; }
+  .phil-t { font-size: .73rem; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); margin-bottom: .8rem; font-weight: 400; }
+  .phil-p { font-size: .78rem; color: rgba(255,255,255,.4); line-height: 1.85; }
+
+  /* ─── LOOKBOOK STRIP ─── */
+  .lookbook { padding: 0; }
+  .lookbook-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.6fr;
+    height: 520px;
+  }
+  .lb-cell {
+    position: relative; overflow: hidden; cursor: pointer;
+    border-right: 3px solid var(--white);
+  }
+  .lb-cell:last-child { border-right: none; }
+  .lb-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    filter: brightness(.82);
+    transition: transform .8s ease, filter .5s;
+  }
+  .lb-cell:hover img { transform: scale(1.07); filter: brightness(.95); }
+  .lb-cell .lb-label {
+    position: absolute; bottom: 1.8rem; left: 1.8rem; z-index: 2;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .4s, transform .4s;
+  }
+  .lb-cell:hover .lb-label { opacity: 1; transform: translateY(0); }
+  .lb-label span { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 200; color: var(--white); font-style: italic; }
+
+  /* ─── NEWSLETTER ─── */
+  .nl-section {
+    background: var(--sky-pale); padding: 6rem 3rem; text-align: center;
+  }
+  .nl-section h2 { margin-bottom: 1rem; }
+  .nl-section .nl-sub { font-size: .85rem; color: var(--muted); max-width: 400px; margin: 0 auto 2.5rem; }
+
+  .nl-form {
+    display: flex; max-width: 500px; margin: 0 auto;
+    border-radius: 100px; overflow: hidden;
+    box-shadow: 0 6px 32px var(--shadow);
+  }
+  .nl-form input {
+    flex: 1; background: var(--white); border: none;
+    padding: 1rem 1.8rem; font-family: 'Outfit', sans-serif;
+    font-size: .82rem; color: var(--ink); outline: none;
+  }
+  .nl-form input::placeholder { color: var(--muted); }
+  .nl-form button {
+    background: var(--blue); color: var(--white); border: none;
+    padding: 1rem 2.2rem; font-family: 'Outfit', sans-serif;
+    font-size: .7rem; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; cursor: pointer; white-space: nowrap;
+    transition: background .3s;
+  }
+  .nl-form button:hover { background: var(--blue-mid); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); padding: 5.5rem 3rem 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 4rem;
+  }
+  .f-logo { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 200; letter-spacing: .3em; color: var(--white); display: block; margin-bottom: .3rem; }
+  .f-sub { font-size: .5rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(255,255,255,.3); display: block; margin-bottom: 1.5rem; }
+  .f-desc { font-size: .78rem; color: rgba(255,255,255,.38); line-height: 1.85; margin-bottom: 1rem; }
+  .f-email { color: var(--sky) !important; font-size: .78rem; opacity: .65; transition: opacity .3s; }
+  .f-email:hover { opacity: 1; }
+  .f-col h5 { font-size: .6rem; letter-spacing: .28em; text-transform: uppercase; color: var(--sky); opacity: .45; margin-bottom: 1.5rem; font-weight: 400; }
+  .f-col a { display: block; color: rgba(255,255,255,.38); font-size: .78rem; margin-bottom: .75rem; transition: color .3s; }
+  .f-col a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.07); padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .65rem; color: rgba(255,255,255,.22); letter-spacing: .07em;
+  }
+  .footer-bottom a { color: rgba(255,255,255,.22); transition: color .3s; }
+  .footer-bottom a:hover { color: rgba(255,255,255,.65); }
+  .footer-social { display: flex; gap: 2rem; }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .reveal-left.in { opacity: 1; transform: none; }
+  .reveal-right { opacity: 0; transform: translateX(36px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .reveal-right.in { opacity: 1; transform: none; }
+
+  .d1 { transition-delay: .08s !important; }
+  .d2 { transition-delay: .16s !important; }
+  .d3 { transition-delay: .24s !important; }
+  .d4 { transition-delay: .32s !important; }
+
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+  @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+  @keyframes slideUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:1100px) {
+    .products-grid { grid-template-columns: repeat(2,1fr); }
+    .lookbook-grid { grid-template-columns: 1fr 1fr; height: auto; }
+    .lb-cell { height: 300px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .phil-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media(max-width:768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .cursor, .cursor-ring { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 65vw; }
+    .coat-feature { grid-template-columns: 1fr; }
+    .coat-img { height: 70vw; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .jeans-layout { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2,1fr); }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; }
+    .phil-grid { grid-template-columns: 1fr; }
+    .lookbook-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cur" aria-hidden="true"></div>
+<div class="cursor-ring" id="curRing" aria-hidden="true"></div>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>Great Finnish Administration</span><span class="sep">·</span>
+    <span>New Drop SS26</span><span class="sep">·</span>
+    <span>Baggy Jeans</span><span class="sep">·</span>
+    <span>Oversized Coats</span><span class="sep">·</span>
+    <span>Nordic Streetwear</span><span class="sep">·</span>
+    <span>Free Shipping Over €120</span><span class="sep">·</span>
+    <span>Great Finnish Administration</span><span class="sep">·</span>
+    <span>New Drop SS26</span><span class="sep">·</span>
+    <span>Baggy Jeans</span><span class="sep">·</span>
+    <span>Oversized Coats</span><span class="sep">·</span>
+    <span>Nordic Streetwear</span><span class="sep">·</span>
+    <span>Free Shipping Over €120</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-links" role="list">
+    <a href="#products" role="listitem">Shop</a>
+    <a href="#jeans" role="listitem">Denim</a>
+    <a href="#coats" role="listitem">Coats</a>
+    <a href="#lookbook" role="listitem">Lookbook</a>
+    <a href="#about" role="listitem">About</a>
+  </div>
+  <div class="nav-logo">
+    <span class="w">GFA</span>
+    <span class="s">Great Finnish Administration</span>
+  </div>
+  <div class="nav-right">
+    <a href="#">Search</a>
+    <a href="#">Account</a>
+    <a href="#" class="nav-cart" aria-live="polite" aria-label="Cart, 0 items">Cart (0)</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-pill"><span class="blink"></span> SS26 — Now Live</div>
+    <h1 class="hero-title">Dress for<br>the <em>North.</em></h1>
+    <p class="hero-desc">Finnish-rooted streetwear for those who move with intention. Relaxed fits, clean silhouettes, honest fabrics — built to last.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-fill">Shop Collection</a>
+      <a href="#coats"    class="btn-ghost">View Coats</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img
+      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fit=crop&w=900&h=900&q=80"
+      srcset="https://images.unsplash.com/photo-1483985988355-763728e1935b?fit=crop&w=600&h=600&q=75 600w,
+              https://images.unsplash.com/photo-1483985988355-763728e1935b?fit=crop&w=900&h=900&q=80 900w,
+              https://images.unsplash.com/photo-1483985988355-763728e1935b?fit=crop&w=1400&h=1400&q=80 1400w"
+      sizes="(max-width:768px) 90vw, 50vw"
+      alt="GFA SS26 Campaign"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="hero-badge">
+      <p class="b-tag">Featured Drop</p>
+      <p class="b-name">Arctic White Coat</p>
+      <p class="b-price">€289</p>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal d1"><span class="stat-num">12k+</span><span class="stat-lbl">Customers</span></div>
+  <div class="stat-item reveal d2"><span class="stat-num">48</span><span class="stat-lbl">Products</span></div>
+  <div class="stat-item reveal d3"><span class="stat-num">30+</span><span class="stat-lbl">Countries</span></div>
+  <div class="stat-item reveal d4"><span class="stat-num">SS26</span><span class="stat-lbl">Current Season</span></div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Baggy Fits</span><span class="dot-sep">·</span>
+    <span>Clean Drapes</span><span class="dot-sep">·</span>
+    <span>Nordic Edge</span><span class="dot-sep">·</span>
+    <span>Oversized Coats</span><span class="dot-sep">·</span>
+    <span>Finnish Roots</span><span class="dot-sep">·</span>
+    <span>Honest Fabric</span><span class="dot-sep">·</span>
+    <span>Wide Leg Denim</span><span class="dot-sep">·</span>
+    <span>Baggy Fits</span><span class="dot-sep">·</span>
+    <span>Clean Drapes</span><span class="dot-sep">·</span>
+    <span>Nordic Edge</span><span class="dot-sep">·</span>
+    <span>Oversized Coats</span><span class="dot-sep">·</span>
+    <span>Finnish Roots</span><span class="dot-sep">·</span>
+    <span>Honest Fabric</span><span class="dot-sep">·</span>
+    <span>Wide Leg Denim</span><span class="dot-sep">·</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="cat-section" id="categories">
+  <div class="reveal">
+    <p class="s-lbl">Shop by Category</p>
+    <h2>Find Your <em>Style</em></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?fit=crop&w=600&h=800&q=80" alt="Denim" loading="lazy"/>
+      <div class="overlay"></div>
+      <div class="c-info">
+        <span class="c-tag">Shop</span>
+        <span class="c-name">Denim</span>
+        <a href="#jeans" class="c-link">Explore →</a>
+      </div>
+    </div>
+    <div class="cat-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?fit=crop&w=600&h=800&q=80" alt="Coats" loading="lazy"/>
+      <div class="overlay"></div>
+      <div class="c-info">
+        <span class="c-tag">Shop</span>
+        <span class="c-name">Coats</span>
+        <a href="#coats" class="c-link">Explore →</a>
+      </div>
+    </div>
+    <div class="cat-card reveal d3">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027614b8?fit=crop&w=600&h=800&q=80" alt="Basics" loading="lazy"/>
+      <div class="overlay"></div>
+      <div class="c-info">
+        <span class="c-tag">Shop</span>
+        <span class="c-name">Basics</span>
+        <a href="#products" class="c-link">Explore →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="products-header reveal">
+    <div>
+      <p class="s-lbl">Just Dropped</p>
+      <h2>New <em>Arrivals</em></h2>
+    </div>
+    <a href="#" class="see-all">View all products →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="p-card reveal d1">
+      <div class="p-img">
+        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?fit=crop&w=600&h=800&q=80" alt="Wide-Leg Denim" loading="lazy"/>
+        <span class="badge badge-new">New</span>
+        <button class="quick-add" type="button" aria-label="Quick add to cart">+ Quick Add</button>
+      </div>
+      <div class="p-info">
+        <p class="p-name">GFA Wide-Leg Denim</p>
+        <p class="p-sub">Washed Indigo · Baggy Fit</p>
+        <p class="p-price">€129</p>
+        <div class="sz-row"><span class="sz">XS</span><span class="sz">S</span><span class="sz">M</span><span class="sz">L</span><span class="sz">XL</span></div>
+      </div>
+    </div>
+
+    <div class="p-card reveal d2">
+      <div class="p-img">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?fit=crop&w=600&h=800&q=80" alt="Arctic Coat" loading="lazy"/>
+        <span class="badge badge-hot">Bestseller</span>
+        <button class="quick-add" type="button" aria-label="Quick add to cart">+ Quick Add</button>
+      </div>
+      <div class="p-info">
+        <p class="p-name">Arctic Oversized Coat</p>
+        <p class="p-sub">Off-White · Wool Blend</p>
+        <p class="p-price">€289 <span class="p-old">€349</span></p>
+        <div class="sz-row"><span class="sz">S</span><span class="sz">M</span><span class="sz">L</span><span class="sz">XL</span></div>
+      </div>
+    </div>
+
+    <div class="p-card reveal d3">
+      <div class="p-img">
+        <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?fit=crop&w=600&h=800&q=80" alt="Utility Cargo" loading="lazy"/>
+        <span class="badge badge-new">New</span>
+        <button class="quick-add" type="button" aria-label="Quick add to cart">+ Quick Add</button>
+      </div>
+      <div class="p-info">
+        <p class="p-name">GFA Utility Cargo</p>
+        <p class="p-sub">Stone Grey · Relaxed Fit</p>
+        <p class="p-price">€109</p>
+        <div class="sz-row"><span class="sz">XS</span><span class="sz">S</span><span class="sz">M</span><span class="sz">L</span></div>
+      </div>
+    </div>
+
+    <div class="p-card reveal d4">
+      <div class="p-img">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?fit=crop&w=600&h=800&q=80" alt="Heavy Hoodie" loading="lazy"/>
+        <button class="quick-add" type="button" aria-label="Quick add to cart">+ Quick Add</button>
+      </div>
+      <div class="p-info">
+        <p class="p-name">Nordic Heavy Hoodie</p>
+        <p class="p-sub">Ash Slate · 450gsm Fleece</p>
+        <p class="p-price">€89</p>
+        <div class="sz-row"><span class="sz">S</span><span class="sz">M</span><span class="sz">L</span><span class="sz">XL</span><span class="sz">XXL</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COAT FEATURE -->
+<div class="coat-feature" id="coats">
+  <div class="coat-img reveal-left">
+    <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?fit=crop&w=900&h=1100&q=80" alt="White Coat Feature" loading="lazy"/>
+  </div>
+  <div class="coat-content reveal-right">
+    <p class="s-lbl">Featured Drop</p>
+    <h2>The White<br><em>Coat.</em></h2>
+    <p>Clean, oversized, uncompromising. Crafted from heavyweight wool-blend with a structured shoulder and dropped hem. Four colourways — one silhouette that does everything.</p>
+    <div class="coat-price-display">€289</div>
+    <div class="swatches">
+      <span class="swatch-lbl">Colour</span>
+      <div class="sw sw-white on"></div>
+      <div class="sw sw-cream"></div>
+      <div class="sw sw-navy"></div>
+      <div class="sw sw-stone"></div>
+    </div>
+    <div class="coat-btns">
+      <a href="#" class="btn-fill">Add to Cart</a>
+      <a href="#" class="btn-ghost">View Details</a>
+    </div>
+  </div>
+</div>
+
+<!-- JEANS SECTION -->
+<section class="jeans-section" id="jeans">
+  <div class="reveal">
+    <p class="s-lbl">The GFA Denim Program</p>
+    <h2>Baggy Jeans <em>Done Right</em></h2>
+  </div>
+  <div class="jeans-layout">
+    <div class="jeans-big reveal-left">
+      <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?fit=crop&w=700&h=1050&q=80" alt="Wide Leg Denim" loading="lazy"/>
+      <div class="jeans-badge">
+        <p class="jb-tag">GFA Signature</p>
+        <p class="jb-name">Wide-Leg Denim</p>
+        <p class="jb-price">From €109 · 4 Washes</p>
+      </div>
+    </div>
+    <div class="jeans-stack">
+      <div class="jeans-mini reveal d1">
+        <img src="https://images.unsplash.com/photo-1475178626620-a4d074967452?fit=crop&w=240&h=300&q=80" alt="Indigo Baggy" loading="lazy"/>
+        <div class="jm-info">
+          <span class="jm-tag">Washed</span>
+          <span class="jm-name">Indigo Baggy</span>
+          <span class="jm-price">€129</span>
+          <a href="#" class="jm-link">Shop →</a>
+        </div>
+      </div>
+      <div class="jeans-mini reveal d2">
+        <img src="https://images.unsplash.com/photo-1565084888279-aca607ecce0c?fit=crop&w=240&h=300&q=80" alt="Light Wash" loading="lazy"/>
+        <div class="jm-info">
+          <span class="jm-tag">Light Wash</span>
+          <span class="jm-name">Relaxed Straight</span>
+          <span class="jm-price">€119</span>
+          <a href="#" class="jm-link">Shop →</a>
+        </div>
+      </div>
+      <div class="jeans-mini reveal d3">
+        <img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?fit=crop&w=240&h=300&q=80" alt="Raw Denim" loading="lazy"/>
+        <div class="jm-info">
+          <span class="jm-tag">Raw</span>
+          <span class="jm-name">Selvedge Wide Leg</span>
+          <span class="jm-price">€149</span>
+          <a href="#" class="jm-link">Shop →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<div class="lookbook" id="lookbook">
+  <div class="lookbook-grid">
+    <div class="lb-cell reveal d1">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?fit=crop&w=600&h=520&q=80" alt="Look 1" loading="lazy"/>
+      <div class="lb-label"><span>SS26 Look 01</span></div>
+    </div>
+    <div class="lb-cell reveal d2">
+      <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?fit=crop&w=400&h=520&q=80" alt="Look 2" loading="lazy"/>
+      <div class="lb-label"><span>SS26 Look 02</span></div>
+    </div>
+    <div class="lb-cell reveal d3">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?fit=crop&w=400&h=520&q=80" alt="Look 3" loading="lazy"/>
+      <div class="lb-label"><span>SS26 Look 03</span></div>
+    </div>
+    <div class="lb-cell reveal d4">
+      <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?fit=crop&w=600&h=520&q=80" alt="Look 4" loading="lazy"/>
+      <div class="lb-label"><span>SS26 Look 04</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="reveal">
+    <p class="s-lbl">What We Stand For</p>
+    <h2>Built on <em>Principles</em></h2>
+  </div>
+  <div class="phil-grid">
+    <div class="phil-card reveal d1">
+      <div class="phil-n">01</div>
+      <p class="phil-t">Quality First</p>
+      <p class="phil-p">Every piece is built to last. We pick fabrics that improve with wear and construction that holds its shape season after season.</p>
+    </div>
+    <div class="phil-card reveal d2">
+      <div class="phil-n">02</div>
+      <p class="phil-t">Nordic Restraint</p>
+      <p class="phil-p">No unnecessary details. No loud logos. Just honest, considered design rooted in Finnish sensibility and Scandinavian calm.</p>
+    </div>
+    <div class="phil-card reveal d3">
+      <div class="phil-n">03</div>
+      <p class="phil-t">Relaxed Fit</p>
+      <p class="phil-p">We design for comfort without sacrificing proportion. Our silhouettes move with you — not against you.</p>
+    </div>
+    <div class="phil-card reveal d4">
+      <div class="phil-n">04</div>
+      <p class="phil-t">Transparency</p>
+      <p class="phil-p">We share where our clothes come from and how they're made. If we're not proud of it, we don't do it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="nl-section" id="about">
+  <p class="s-lbl reveal">Stay in the Loop</p>
+  <h2 class="reveal" style="margin-bottom:1rem;">Get Early <em>Access</em></h2>
+  <p class="nl-sub reveal">Drop alerts, restocks and exclusive offers — straight from Helsinki to your inbox.</p>
+  <form class="nl-form reveal" id="newsletter" action="/subscribe" method="post" aria-label="Newsletter subscription" novalidate>
+    <label for="nl-email" class="visually-hidden">E-Mail-Adresse</label>
+    <input id="nl-email" name="email" type="email" placeholder="your@email.com" required autocomplete="email" />
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="reveal" style="margin-top:1.2rem;font-size:.72rem;color:var(--muted);">
+    Or reach us at <a href="/cdn-cgi/l/email-protection#325b5c545d725554531c545b" style="color:var(--blue-light);"><span class="__cf_email__" data-cfemail="93fafdf5fcd3f4f5f2bdf5fa">[email&#160;protected]</span></a>
+  </p>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="f-logo">GFA</span>
+      <span class="f-sub">Great Finnish Administration</span>
+      <p class="f-desc">Finnish-rooted streetwear for those who move with intention. Based in Helsinki, shipping worldwide.</p>
+      <a href="/cdn-cgi/l/email-protection#afc6c1c9c0efc8c9ce81c9c6" class="f-email"><span class="__cf_email__" data-cfemail="4c25222a230c2b2a2d622a25">[email&#160;protected]</span></a>
+    </div>
+    <div class="f-col">
+      <h5>Shop</h5>
+      <a href="#">New Arrivals</a>
+      <a href="#">Baggy Jeans</a>
+      <a href="#">Coats & Jackets</a>
+      <a href="#">Hoodies</a>
+      <a href="#">Cargo Pants</a>
+      <a href="#">Accessories</a>
+    </div>
+    <div class="f-col">
+      <h5>Company</h5>
+      <a href="#">About GFA</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Sizing Guide</a>
+      <a href="#">Stockists</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="f-col">
+      <h5>Support</h5>
+      <a href="#">FAQ</a>
+      <a href="#">Shipping & Returns</a>
+      <a href="#">Track Order</a>
+      <a href="#">Imprint</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Great Finnish Administration — All rights reserved</span>
+    <div class="footer-social">
+      <a href="#" rel="noopener noreferrer">Instagram</a>
+      <a href="#" rel="noopener noreferrer">TikTok</a>
+      <a href="#" rel="noopener noreferrer">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─ Custom cursor (respects prefers-reduced-motion)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('curRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  if (!prefersReducedMotion) {
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cur.style.left = mx + 'px';
+      cur.style.top  = my + 'px';
+      rx += (mx - rx) * .12;
+      ry += (my - ry) * .12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+  }
+  document.querySelectorAll('a, button, .p-card, .cat-card, .jeans-mini').forEach(el => {
+    el.addEventListener('mouseenter', () => { if(cur) cur.style.transform = 'translate(-50%,-50%) scale(2.5)'; if(ring) ring.style.opacity = '0'; });
+    el.addEventListener('mouseleave', () => { if(cur) cur.style.transform = 'translate(-50%,-50%) scale(1)';   if(ring) ring.style.opacity = '.5'; });
+  });
+
+  // ─ Newsletter form
+  const nlForm = document.getElementById('newsletter');
+  if (nlForm) {
+    nlForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = nlForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      // Simulate async submit — replace with real fetch/API call
+      setTimeout(() => {
+        nlForm.innerHTML = '<p role="status" aria-live="polite" style="color:var(--blue);font-size:.9rem;font-weight:500;padding:1rem;">✓ You\'re on the list! Check your inbox.</p>';
+      }, 900);
+    });
+  }
+
+  // ─ Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('shadow', window.scrollY > 24), {passive:true});
+
+  // ─ Scroll reveal (up, left, right)
+  const revEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revEls.forEach(e => io.observe(e));
+
+  // ─ Colour swatches
+  document.querySelectorAll('.sw').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.sw').forEach(x => x.classList.remove('on'));
+      s.classList.add('on');
+    });
+  });
+
+  // ─ Size picker
+  document.querySelectorAll('.sz').forEach(s => {
+    s.addEventListener('click', () => {
+      const row = s.closest('.sz-row');
+      row.querySelectorAll('.sz').forEach(x => x.classList.remove('active'));
+      s.classList.add('active');
+    });
+  });
+
+  // ─ Stat counter animation
+  function animateCount(el, target, suffix='') {
+    let start = 0;
+    const dur = 1800;
+    const step = ts => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / dur, 1);
+      const val = Math.floor(progress * target);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('.stat-num');
+        nums.forEach(n => {
+          const txt = n.textContent;
+          if (txt.includes('k+')) animateCount(n, 12, 'k+');
+        
